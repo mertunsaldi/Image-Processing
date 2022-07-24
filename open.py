@@ -1,13 +1,13 @@
 import cv2 as cv
-
+# read images
 im1 = cv.imread('different images/1-1.png')
 im2 = cv.imread('different images/1-4.png')
-
+# 3-channel array subtraction of two images
 diff = cv.subtract(im1, im2)
-
+# result converted to binary greyscale
 diff_grey = cv.cvtColor(diff, cv.COLOR_BGR2GRAY)
-
-contours, hierarchy = cv.findContours(diff_grey, cv.RETR_TREE, cv.CHAIN_APPROX_NONE)
+#
+contours, hierarchy = cv.findContours(diff_grey, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
 
 total_contour_area = sum(cv.contourArea(contour) for contour in contours)
 
